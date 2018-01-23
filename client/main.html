@@ -26,6 +26,111 @@
 <link href="https://fonts.googleapis.com/css?family=Lobster|Oswald" rel="stylesheet">
 <style>
 
+#FOOTER_1 {
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    height: 31px;
+    text-decoration: none solid rgb(85, 85, 85);
+    width: 100%;
+    column-rule-color: rgb(85, 85, 85);
+    perspective-origin: 597px 15.5px;
+    transform-origin: 597px 15.5px;
+    caret-color: rgb(85, 85, 85);
+    border-top: 3px solid rgb(233, 233, 233);
+    border-right: 0px none rgb(85, 85, 85);
+    border-bottom: 0px none rgb(85, 85, 85);
+    border-left: 0px none rgb(85, 85, 85);
+    font: normal normal 400 normal 16px / 16px "Open Sans", Roboto, sans-serif;
+    margin: 32px 0px 0px;
+    outline: rgb(85, 85, 85) none 0px;
+    padding: 12px 0px 0px;
+}/*#FOOTER_1*/
+
+#DIV_2 {
+    box-sizing: border-box;
+    clear: both;
+    color: rgb(85, 85, 85);
+    content: '""';
+    display: table;
+    height: 16px;
+    max-width: 920px;
+    text-decoration: none solid rgb(85, 85, 85);
+    width: 100%;
+    column-rule-color: rgb(85, 85, 85);
+    perspective-origin: 460px 8px;
+    transform-origin: 460px 8px;
+    caret-color: rgb(85, 85, 85);
+    border: 0px none rgb(85, 85, 85);
+    font: normal normal 400 normal 16px / 16px "Open Sans", Roboto, sans-serif;
+    margin: 0px 137px;
+    outline: rgb(85, 85, 85) none 0px;
+}/*#DIV_2*/
+
+#DIV_3 {
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    float: left;
+    height: 14px;
+    text-decoration: none solid rgb(85, 85, 85);
+    width: 216.75px;
+    column-rule-color: rgb(85, 85, 85);
+    perspective-origin: 108.375px 7px;
+    transform-origin: 108.375px 7px;
+    caret-color: rgb(85, 85, 85);
+    border: 0px none rgb(85, 85, 85);
+    font: normal normal 400 normal 14px / 14px "Open Sans", Roboto, sans-serif;
+    outline: rgb(85, 85, 85) none 0px;
+}/*#DIV_3*/
+
+#A_4, #A_5 {
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    text-decoration: none solid rgb(85, 85, 85);
+    column-rule-color: rgb(85, 85, 85);
+    caret-color: rgb(85, 85, 85);
+    border: 0px none rgb(85, 85, 85);
+    font: normal normal 400 normal 14px / 14px "Open Sans", Roboto, sans-serif;
+    outline: rgb(85, 85, 85) none 0px;
+    padding: 7px;
+    transition: color 0.5s ease 0s;
+}/*#A_4, #A_5*/
+
+#DIV_6 {
+    box-sizing: border-box;
+    color: rgb(129, 80, 171);
+    float: right;
+    height: 16px;
+    text-decoration: none solid rgb(129, 80, 171);
+    width: 100%;
+    column-rule-color: rgb(129, 80, 171);
+    perspective-origin: 53.1875px 8px;
+    transform-origin: 53.1875px 8px;
+    caret-color: rgb(129, 80, 171);
+    border: 0px none rgb(129, 80, 171);
+    font: italic normal 600 normal 16px / 16px "Open Sans", Roboto, sans-serif;
+    outline: rgb(129, 80, 171) none 0px;
+    margin-right: 0px;
+    text-align: right;
+}/*#DIV_6*/
+
+#software {
+  margin-right: 500px;
+  padding-right: 500px;
+}
+#SPAN_7 {
+    box-sizing: border-box;
+    color: rgb(129, 80, 171);
+    text-decoration: none solid rgb(129, 80, 171);
+    column-rule-color: rgb(129, 80, 171);
+    caret-color: rgb(129, 80, 171);
+    border: 0px none rgb(129, 80, 171);
+    font: normal normal 400 normal 16px / 16px "Open Sans", Roboto, sans-serif;
+    outline: rgb(129, 80, 171) none 0px;
+    margin-right: -500px;
+}/*#SPAN_7*/
+
+
+
 #okta-sign-in h2, #okta-sign-in h3 {
   color: black;
 }
@@ -44,18 +149,45 @@
 }
 
 .auth-content {
+  background-color: rgba(0,0,0,0.0);
 
-  background-color: #0B0906;
+}
+
+#okta-sign-in > div.okta-sign-in-header.auth-header {
+    display: none;
+}
+
+
+
+#okta-sign-in > div.auth-content {
+
+}
+
+#okta-sign-in {
+  min-width: 100%;
+  min-height: 25%;
+  background-image: url("crlloginbg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 2.5%;
+  border-style: none;
+}
+
+.button .button-primary .link-button-disabled {
+  max-width: 20%;
+  background-color: blue;
+  background: blue;
 }
 
 #form18 > div.o-form-button-bar > input {
-  background-color: #B38D53;
+  background-color: rgba(0,0,0,0);
 
 }
 
-#okta-sign-in .button-primary {
-      color: black;
-      background-color: white;
+#okta-sign-in .button-primary::after {
+      color: rgba(0,0,0,0);
+      content: "yaka";
+      background-color: rgba(0,0,0,0);
       border-color: black;
       background: black;
       background-repeat: no-repeat;
@@ -70,6 +202,7 @@
 .auth-org-logo {
   max-width: 200px;
   max-height: 500px;
+  display: none;
 }
 
 #appsBody {
@@ -91,9 +224,100 @@
     background-color: #B38D53;
   }
 
+  #okta-sign-in h2, #okta-sign-in h3 {
+    color: white;
+}
+
   h5 {
     color: black;
   }
+
+  .primary-auth-form {
+    max-width: 800px;
+    padding-left: 40%;
+  }
+
+  .o-form-head {
+      font-size: 36px;
+      color: white;
+      text-decoration-color: white;
+      line-height: 1.5;
+      margin-top: 10px;
+      text-align: left;
+      margin-bottom: 10%;
+      text-transform: none;
+  }
+
+  .o-form-input-name-remember {
+    color: white;
+  }
+
+.link .help {
+  color: white;
+}
+
+.help-links .js-help-links {
+    text-decoration: none;
+    color: white;
+}
+
+#okta-sign-in .link:link, #okta-sign-in .link:visited, #okta-sign-in .link:hover, #okta-sign-in .link:active {
+    color: white;
+}
+
+a {
+  color: white;
+}
+
+.okta-form-title .o-form-head {
+
+}
+
+.o-form-input-name-username {
+    max-width: 50%;
+  }
+
+  .o-form-input-name-password {
+      max-width: 50%;
+    }
+
+    .button-primary {
+        max-width: 20%;
+        background-color: #36f7f0;
+        background: blue;
+        color: white;
+        color: white !important;
+        border-style: none;
+    }
+input.button.button-primary {
+  color: white;
+}
+
+    #okta-sign-in .button-primary {
+        border-color: black;
+        background: clearbit;
+        background-image: initial;
+        background-position-x: initial;
+        background-position-y: initial;
+        background-size: initial;
+        background-repeat-x: no-repeat;
+        background-repeat-y: no-repeat;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-repeat: no-repeat;
+        filter: none;
+        max-width: 20%;
+        color: white;
+    }
+
+    #logopic {
+      padding-left: 40%;
+    }
+
+    #body {
+      background-color: white;
+    }
 
 </style>
 
@@ -108,8 +332,7 @@
 
 
 <script type="text/javascript">
-
-
+$(".o-form-head").text("YO YO YO")
 
 $.ajax({
   url: '/styleObject',
@@ -127,13 +350,13 @@ $.ajax({
    var cardColor = data[0].cardColor
    var textColor = data[0].headerColor
 
-  var company = "https://logo.clearbit.com/" + logoString + ".com"
-  console.log(company)
-  $('#logopic').attr('src', company);
-  $("#navbar").css("background-color", color);
-   $("a").css("color", textColor);
-   $(".mdl-card__supporting-text").css("background-color", cardColor)
-  $(".mdl-card__supporting-text").css("color", textColor)
+  // var company = "https://logo.clearbit.com/" + logoString + ".com"
+  // console.log(company)
+  // $('#logopic').attr('src', company);
+  // $("#navbar").css("background-color", color);
+  //  $("a").css("color", textColor);
+  //  $(".mdl-card__supporting-text").css("background-color", cardColor)
+  // $(".mdl-card__supporting-text").css("color", textColor)
 
 })
 .fail(function(data) {
@@ -148,11 +371,7 @@ $.ajax({
 
 </script>
 
-  <video autoplay loop muted poster="screenshot.jpg" id="background">
 
-    <source src="/city.mp4" type="video/mp4">
-
-</video>
 
 
 
@@ -160,14 +379,14 @@ $.ajax({
   <header id="navbar" class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title of the Header -->
-      <span class="mdl-layout-title"><img id="logopic" src="https://logo.clearbit.com/fabricgenomics.com" height="80"></span>
+      <span class="mdl-layout-title"><img id="logopic" src="/crl_logo.png" height="80"></span>
       <!-- Spacer, to align items to right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation links, hidden on smaller displays -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
 
       {{#if showLogin}}
-      <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Hudson Alpha Employees Sign In</button>
+      <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">IDP Login</button>
 
       {{else}}
       <a id="userName" class="mdl-navigation__link" href=""></a>
@@ -305,7 +524,7 @@ $.ajax({
   } else if(target.id == "CardColorForm"){
     console.log("change the card color")
     console.log(company)
-      $('.auth-content').css('background-color', company);
+    //$('.auth-content').css('background-color', company);
 
 
   } else {
@@ -366,6 +585,18 @@ location.reload();
 {{#if showLogin}}
 
   {{>login}}
+
+  <footer id="FOOTER_1">
+  	<div id="DIV_2">
+  		<div id="DIV_3">
+  			 <a href="http://www.crlcorp.com/about/CRLTermsofUse/" id="A_4">Terms of Use</a> | <a href="http://www.crlcorp.com/about/CRLTermsofUse/" id="A_5">Privacy Policy</a>
+  		</div>
+  		<div id="DIV_6">
+  			<span id="SPAN_7">Oasis v 9.1.0.0</span>
+  		</div>
+  	</div>
+  </footer>
+
 
 
 {{else}}
@@ -536,6 +767,9 @@ console.log("clientId:" + signInValuesClientId)
 var signIn = new OktaSignIn({
   baseUrl: "https://vanbeektech.okta.com",
   logo: '/userLogin.png',
+  labels: {
+   'primaryauth.title': 'Welcome to Oasis™',
+ },
   clientId: '0oa43ju51wQSUcS6b1t7',
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
@@ -618,7 +852,7 @@ $.ajax({
 .done(function(data) {
   console.log("success");
    var cardColor = data[0].cardColor
-   $(".auth-content").css("background-color", cardColor);
+   //$(".auth-content").css("background-color", cardColor);
    $("#okta-sign-in .button-primary").css("color", cardColor)
 
 })
