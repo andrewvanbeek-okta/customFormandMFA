@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@okta/okta-auth-js": "^1.8.0",
+    "@okta/okta-signin-widget": "^2.6.0",
     "asyncawait": "^1.0.6",
     "babel-runtime": "^6.20.0",
     "install": "^0.10.1",

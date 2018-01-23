@@ -1,3 +1,7 @@
-{
-  "apiToken": "00QgR-Z9fyZ_ApUgxl0QRVowVKIfjXhJkFqthB4Dir"
+{"public": {
+  "apiToken": "00QgR-Z9fyZ_ApUgxl0QRVowVKIfjXhJkFqthB4Dir",
+  "clientId": "0oa43ju51wQSUcS6b1t7",
+  "oktaUrl": "https://vanbeektech.okta.com"
+   }
+
 }

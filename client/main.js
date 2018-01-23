@@ -41,15 +41,15 @@ import './main.html';
 
 
   var authClient = new OktaAuth({
-    url: 'https://vanbeektech.okta.com',
-    clientId: '0oa43ju51wQSUcS6b1t7',
+    url: Meteor.settings.public.oktaUrl,
+    clientId: Meteor.settings.public.clientId,
     redirectUri: 'http://localhost:3000/authorization-code/callback'
 	});
 
 var signIn = new OktaSignIn({
-  baseUrl: 'https://vanbeektech.okta.com',
+  baseUrl: Meteor.settings.public.oktaUrl,
   logo: '/userLogin.png',
-  clientId: '0oa43ju51wQSUcS6b1t7',
+  clientId: Meteor.settings.public.clientId,
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
@@ -102,8 +102,8 @@ Template.hello.helpers({
       console.log("gets here")
 
    var signIn = new OktaSignIn({
-  baseUrl: 'https://vanbeektech.okta.com',
-  clientId: '0oa38fseusRyzxVKf1t7',
+  baseUrl: Meteor.settings.public.oktaUrl,
+  clientId: Meteor.settings.public.clientId,
   redirectUri: 'http://localhost:3000/authorization-code/callback',
   authParams: {
 // display: 'page',
