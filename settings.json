@@ -1,7 +1,7 @@
 {"public": {
-  "apiToken": "00QgR-Z9fyZ_ApUgxl0QRVowVKIfjXhJkFqthB4Dir",
-  "clientId": "0oa43ju51wQSUcS6b1t7",
-  "oktaUrl": "https://vanbeektech.okta.com"
-   }
-
+  "clientId": "0oalg1s724DCvgymZ2p6",
+  "oktaUrl": "https://crldevlab.okta.com",
+  "idp": "0oa38fseusRyzxVKf1t7"
+},
+  "apiToken": "00s9XZdwPPiyWm2Y6BRjwylXjs52L2JprhM98H3dPy"
 }

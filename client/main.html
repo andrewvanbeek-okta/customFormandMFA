@@ -28,6 +28,13 @@
 <script src='/login.js'></script>
 <style>
 
+
+
+
+.mdl-button--fab {
+  background-color: blue;
+}
+
 #FOOTER_1 {
     box-sizing: border-box;
     color: rgb(85, 85, 85);
@@ -382,12 +389,12 @@ $.ajax({
 
       {{else}}
       <a id="userName" class="mdl-navigation__link" href=""></a>
-      <a id="logOuting"  onclick="logOut()" class="mdl-navigation__link nav-links" href="">Logout</a>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="logOuting"  onclick="logOut()" href="">Logout</button>
       <button id="spoofThat" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Spoof Users</button>
       <script>
       $(document).on("click", "#logOuting", function(e){
         e.preventDefault()
-         window.location = "https://vanbeektech.okta.com/login/signout?fromURI=http://localhost:3000"
+         window.location = Meteor.settings.public.oktaUrl + "/login/signout?fromURI=http://localhost:3000"
       });
 
       $(document).on("click", "#spoofThat", function(e){
@@ -643,12 +650,12 @@ var signIn = new OktaSignIn({
             var buttonColor = d.object[0].buttonColor
             var arrayLength = appLinks.length
             for (var i = 0; i < arrayLength; i++) {
-                 $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + ");  background-position: center; background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: #B38D53'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
+                 $("#apssBody").append("<div class='mdl-card mdl-shadow--2dp demo-card-square'><div style='background-color: black; background: url(" + appLinks[i].logoUrl + ");  background-position: center; background-repeat:no-repeat;;'class='mdl-card__title mdl-card--expand'><h5 class='mdl-card__title-text' style='color: black'>" + appLinks[i].label + "</h5></div><div class='mdl-card__supporting-text'><center><a href='" + appLinks[i].linkUrl + "' id='link1'><id='" + appLinks[i].label + "' button class='mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab mdl-button--colored' ><i class='material-icons'>open_in_browser</i></button></a></center></div></div>")
 
             $(".mdl-card__supporting-text").css("background-color", cardColor)
-            $(".mdl-card__supporting-text").css("color", buttonColor)
+            $(".mdl-card__supporting-text").css("color", "black")
             console.log(buttonColor)
-            $(".mdl-button--fab.mdl-button--colored").css("color", "white")
+            $(".mdl-button--fab.mdl-button--colored").css("color", "black")
             $(".mdl-button--fab.mdl-button--colored").css("background-color", buttonColor)
             $(".mdl-card__title-text").css("color", buttonColor)
             }
@@ -734,7 +741,7 @@ function IdPAuth() {
     var options = {
           scopes: ['openid', 'email', 'profile'],
             responseType: 'token',
-            idp: '0oa38fseusRyzxVKf1t7',
+            idp: Meteor.settings.idp,
             redirectUri: 'http://localhost:3000/authorization-code/callback'
         };
    var token = authClient.token.getWithRedirect(options)

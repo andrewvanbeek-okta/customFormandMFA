@@ -35,7 +35,7 @@ var result = Meteor.http.get(route, {
 
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": "SSWS 00FbSUcF4Ud2hMUNtjDQj-Jd94HQTavm284x0D7aKu"// replace with SWSS your Api Token
+        "Authorization": "SSWS" + Meteor.settings.apiToken// replace with SWSS your Api Token
       }
     });
 

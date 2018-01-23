@@ -11,7 +11,7 @@ meteor npm install
 
 also run npm install to install the npms(just to be sure)
 
-also run 
+also run
 
 meteor add session
 
@@ -19,15 +19,25 @@ meteor add http
 
 meteor add meteorhacks:picker
 
-then run 
-meteor
+then run
+meteor --settings settings.json
 
 
 then you should see Meteor server running on: http://localhost:3000/
 
+create a settings json.
+
+format should be like so
+
+{"public": {
+  "clientId": "your client id from okta",
+  "oktaUrl": "your okta url"
+},
+  "apiToken": "your token",
+}
 
 
-From there just edit all the values to match your okta tenant.  
+From there just edit all the values in the settings.json to match your okta tenant.  
 
 Make sure to generate an Okta api Token and replace it in server > main.js file.
 
