@@ -1,7 +1,7 @@
 {"public": {
-  "clientId": "0oalg1s724DCvgymZ2p6",
-  "oktaUrl": "https://crldevlab.okta.com",
+  "clientId": "your id",
+  "oktaUrl": "your url",
   "idp": "0oa38fseusRyzxVKf1t7"
 },
-  "apiToken": "00s9XZdwPPiyWm2Y6BRjwylXjs52L2JprhM98H3dPy"
+  "apiToken": "Your Token"
 }
