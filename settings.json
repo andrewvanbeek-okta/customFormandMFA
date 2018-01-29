@@ -1,7 +1,7 @@
 {"public": {
-  "clientId": "your id",
-  "oktaUrl": "your url",
+  "clientId": "0oa43ju51wQSUcS6b1t7",
+  "oktaUrl": "https://vanbeektech.okta.com",
   "idp": "0oa38fseusRyzxVKf1t7"
 },
-  "apiToken": "Your Token"
+  "apiToken": "00CMSfUgV99IvUjYcyK9Dy9mZ2VcPlF7kv8T4hgno-"
 }

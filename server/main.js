@@ -72,6 +72,75 @@ Picker.route('/colors', function(params, req, res, next){
 })
 
 
+Picker.route('/mfaRoute', function(params, req, res, next){
+
+  var request = require("request");
+console.log(params.query.answer)
+var number = params.query.number
+var options = { method: 'GET',
+  url: 'http://vanbeektech.okta.com/api/v1/users/00u1r5knwoSpMubTC1t7',
+  headers:
+   { 'Postman-Token': '96fe4cda-f5bd-f6a2-58c9-e24da472b9d8',
+     'Cache-Control': 'no-cache',
+     Authorization: 'SSWS' + Meteor.settings.apiToken,
+     'Content-Type': 'application/json',
+     Accept: 'application/json' } };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+        var bodyToReturn = JSON.parse(body)
+        console.log(number)
+        console.log(bodyToReturn["profile"]["randomAnswerOne"])
+      if(params.query.answer == bodyToReturn["profile"]["randomAnswerOne"]){
+          res.end("true")
+      } else {
+        res.end(JSON.stringify(bodyToReturn["profile"]["randomQuestionOne"]))
+      }
+  });
+
+
+
+
+
+
+})
+
+
+var postRoutes = Picker.filter(function(req, res) {
+  // you can write any logic you want.
+  // but this callback does not run inside a fiber
+  // at the end, you must return either true or false
+  return req.method == "POST";
+});
+
+postRoutes.route('/oktaAuth', function(params, req, res, next) {
+  var request = require("request");
+
+  var options = { method: 'POST',
+    url: 'https://vanbeektech.okta.com/api/v1/authn',
+    headers:
+     { 'Postman-Token': 'bffd49bf-9e9c-1787-c268-355125889de3',
+       'Cache-Control': 'no-cache',
+       'Content-Type': 'application/json',
+       Accept: 'application/json' },
+    body:
+     { username: params.query.username,
+       password: params.query.password,
+       options:
+        { multiOptionalFactorEnroll: true,
+          warnBeforePasswordExpired: true } },
+    json: true };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+
+    res.end(JSON.stringify(body))
+  });
+
+})
+
 
 Picker.route('/postAuth', function(params, req, res, next){
 
