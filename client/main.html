@@ -406,7 +406,7 @@ $.ajax({
   <header id="navbar" class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title of the Header -->
-      <span class="mdl-layout-title"><img id="logopic" src="/crl_logo.png" height="80"></span>
+      <span class="mdl-layout-title"><img id="logopic" src="/VOYAGER.png" height="80"></span>
       <!-- Spacer, to align items to right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation links, hidden on smaller displays -->
@@ -427,7 +427,7 @@ $.ajax({
 
       $(document).on("click", "#spoofThat", function(e){
         e.preventDefault()
-         window.location = "https://vanbeektech.okta.com/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
+         window.location = Meteor.settings.public.oktaUrl + "/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
       });
 
     </script>
@@ -798,7 +798,7 @@ var signIn = new OktaSignIn({
       console.log("success");
       console.log(data)
       var authClient = new OktaAuth({
-          url: "https://vanbeektech.okta.com",
+          url: Meteor.settings.public.oktaUrl,
           clientId: "0oa5qjs67h0Ulk91N1t7",
           redirectUri: 'http://localhost:3000'
       });
