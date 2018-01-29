@@ -288,7 +288,16 @@ a {
 
   .o-form-input-name-password {
       max-width: 50%;
+      min-width: 50%;
     }
+
+  #third-factor {
+
+      max-width: 50%;
+        width: 500px;
+      min-width: 50%;
+      height: 40px;
+  }
 
     .button-primary {
         max-width: 20%;
@@ -341,7 +350,26 @@ input.button.button-primary {
 
 
 <script type="text/javascript">
+
+var oktaForm = document.querySelectorAll("[data-se='o-form']")
+var id = "#" + oktaForm[0]["id"]
+var jqueryForm = $(id)
+jqueryForm.on("submit", function(e){
+  console.log("test")
+  e.preventDefault()
+})
+
+var oktaForm = document.querySelectorAll("[data-type='save']")
+var id = "#" + oktaForm[0]["id"]
+var jqueryForm = $(id)
+jqueryForm.on("click", function(e){
+  console.log("test")
+  e.preventDefault()
+})
+
 console.log(Meteor.settings.public.oktaUrl)
+
+
 
 
 $.ajax({
@@ -378,17 +406,17 @@ $.ajax({
   <header id="navbar" class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title of the Header -->
-      <span class="mdl-layout-title"><img id="logopic" src="/crl_logo.png" height="80"></span>
+      <span class="mdl-layout-title"><img id="logopic" src="/VOYAGER.png" height="80"></span>
       <!-- Spacer, to align items to right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation links, hidden on smaller displays -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
 
       {{#if showLogin}}
-      <button onclick="IdPAuth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">IDP Login</button>
+      <button onclick="Auth()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">IDP Login</button>
 
       {{else}}
-      <a id="userName" class="mdl-navigation__link" href=""></a>
+      <a id="userName" style="color: black;" class="mdl-navigation__link" href=""></a>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="logOuting"  onclick="logOut()" href="">Logout</button>
       <button id="spoofThat" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Spoof Users</button>
       <script>
@@ -399,7 +427,7 @@ $.ajax({
 
       $(document).on("click", "#spoofThat", function(e){
         e.preventDefault()
-         window.location = "https://vanbeektech.okta.com/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
+         window.location = Meteor.settings.public.oktaUrl + "/home/oidc_client/0oa48bwmxvpxapWt31t7/alntwmdyyUB5fs8d50g4"
       });
 
     </script>
@@ -691,8 +719,139 @@ var signIn = new OktaSignIn({
   </ul>
 </template>
 
-<template name="login">
-<div id="sign-in-container"></div>
+<template name="login"><br><br><br>
+  <script>
+  var questionIndex = Math.floor(Math.random()*3) + 1
+  questionIndex = String(questionIndex)
+  $.ajax({
+    url: '/mfaRoute',
+    data: {number: questionIndex},
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    console.log("success");
+    console.log(data)
+
+  })
+  .fail(function(data) {
+    console.log("error");
+    console.log(data)
+
+  })
+  .always(function(data) {
+
+
+
+  $("#questions").text(data)
+
+    console.log("complete");
+  });
+  $(window, document, undefined).ready(function() {
+
+  $('input').blur(function() {
+    var $this = $(this);
+    if ($this.val())
+      $this.addClass('used');
+    else
+      $this.removeClass('used');
+  });
+
+  var $ripples = $('.ripples');
+
+  $ripples.on('click.Ripples', function(e) {
+
+    var $this = $(this);
+    var $offset = $this.parent().offset();
+    var $circle = $this.find('.ripplesCircle');
+
+    var x = e.pageX - $offset.left;
+    var y = e.pageY - $offset.top;
+
+    $circle.css({
+      top: y + 'px',
+      left: x + 'px'
+    });
+
+    $this.addClass('is-active');
+
+  });
+
+  $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+  	$(this).removeClass('is-active');
+  });
+
+  $("#loginForm").on("submit", function(e){
+    e.preventDefault()
+
+    var username = $("#username").val()
+    var password = $("#password").val()
+
+    console.log(username)
+    console.log(password);
+    $.ajax({
+      url: '/oktaAuth',
+      type: 'POST',
+      data: {username : username, password: password},
+      dataType: 'json',
+    }).done(function(data) {
+      console.log("success");
+      console.log(data)
+      var authClient = new OktaAuth({
+          url: Meteor.settings.public.oktaUrl,
+          clientId: "0oa5qjs67h0Ulk91N1t7",
+          redirectUri: 'http://localhost:3000'
+      });
+      var sessionToken = data["sessionToken"]
+      var ans = $("#question").val()
+      $.ajax({
+        url: '/mfaRoute',
+        type: 'GET',
+        data: {answer : ans, number: questionIndex},
+        dataType: 'json',
+      })
+      .done(function(data) {
+        console.log("success");
+        console.log(data)
+        if(data == true || data == "true"){
+          authClient.session.setCookieAndRedirect(sessionToken);
+        } else {
+          alert("wrong answer!")
+        }
+      })
+
+
+
+    })
+
+  })
+
+
+});
+  </script>
+  <div id="sign-in-container">
+    <br><br><br><br><br>
+    <form id="loginForm">
+  <div class="group">
+    <input type="text" id="username"><span class="highlight"></span><span class="bar"></span>
+    <label>username</label>
+  </div>
+  <div class="group">
+    <input type="password" id="password"><span class="highlight"></span><span class="bar"></span>
+    <label>password</label>
+  </div>
+
+  <div class="group">
+      <label id="questions" style="color: black;">Security Question</label>
+      <br><br><br>
+    <input type="password" id="question"><span class="highlight"></span><span class="bar"></span>
+
+  </div>
+  <button type="submit" class="button buttonBlue">Login
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+</form>
+  </div>
 <script>
 
 console.log(Meteor.settings)
@@ -702,12 +861,6 @@ var authClient = new OktaAuth({
     clientId: Meteor.settings.public.clientId,
     redirectUri: 'http://localhost:3000/authorization-code/callback'
 });
-
-
-
-
-
-
 
 
 
@@ -750,58 +903,46 @@ function IdPAuth() {
 
 }
 
+function Auth() {
 
-
-
+}
 
 
 
 signIn.renderEl(
   // Assumes there is an empty element on the page with an id of 'osw-container'
-  {el: '#sign-in-container'},
+  {el: '#'},
 
   function success(res) {
     console.log(res)
+    window.location = Meteor.settings.public.oktaUrl + "/login/signout?fromURI=http://localhost:3000"
     if (res.status === 'SUCCESS') {
-      if (res.type === 'SESSION_STEP_UP') {
+      res.session.setCookieAndRedirect(Meteor.settings.public.oktaUrl + "/login/signout?fromURI=http://localhost:3000")
+      var ans = $("#third-factor").val()
+      $.ajax({
+        url: '/mfaRoute',
+        type: 'GET',
+        data: {answer : ans},
+        dataType: 'json',
+      }).done(function(data) {
+        console.log("success");
+        if(data != "true" || data != true){
+          window.location = Meteor.settings.public.oktaUrl + "/login/signout?fromURI=http://localhost:3000"
+        } else {
+          return;
+        }
+      })
 
-        return;
-      } else {
 
-
-      }
-
-
-
-      console.log(signIn.tokenManager.get('my_access_token'))
-      // window.location.href = Meteor.settings.public.oktaUrl
-      return;
     }
   },
   function error(err) {
   }
 );
 
-$.ajax({
-  url: '/styleObject',
-  type: 'GET',
-  dataType: 'json',
-})
-.done(function(data) {
-  console.log("success");
-   var cardColor = data[0].cardColor
-   //$(".auth-content").css("background-color", cardColor);
-   $("#okta-sign-in .button-primary").css("color", cardColor)
 
-})
-.fail(function(data) {
-  console.log("error");
-  console.log(data)
 
-})
-.always(function() {
-  console.log("complete");
-});
+
 
 setInterval(function(){
 
@@ -839,11 +980,7 @@ IdPAuth()
 <template name="admin">
 
   <main class="mdl-layout__content">
-    <form action="/action_page.php">
-    Select your favorite color:
-    <input type="color" name="favcolor" value="#ff0000">
-    <input type="submit">
-  </form>
+
   </main>
 
 

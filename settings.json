@@ -1,7 +1,7 @@
 {"public": {
-  "clientId": "your id",
-  "oktaUrl": "your url",
+  "clientId": "your client id",
+  "oktaUrl": "your okta org",
   "idp": "0oa38fseusRyzxVKf1t7"
 },
-  "apiToken": "Your Token"
+  "apiToken": "your token"
 }
